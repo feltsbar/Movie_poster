@@ -5,16 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_poster.databinding.FragmentHomeBinding
+import com.example.movie_poster.presentation.view_model.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
         get() = _binding ?: throw RuntimeException("FragmentHomeBinding == null")
-    private lateinit var gridLayoutManager: GridLayoutManager
+//    private lateinit var gridLayoutManager: GridLayoutManager
+    private lateinit var viewModel: MainViewModel
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +40,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        scope.launch {
+            viewModel.loadAllFilms()
+        }
+
         // TODO realized Adapter
         //  val adapter = PhotosAdapter()
         // binding.rvPoster.adapter = adapter
-        gridLayoutManager = GridLayoutManager(
-            requireContext(),
-            3,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
-        binding.rvPoster.layoutManager = gridLayoutManager
+//        gridLayoutManager = GridLayoutManager(
+//            requireContext(),
+//            3,
+//            LinearLayoutManager.VERTICAL,
+//            false
+//        )
+//        binding.rvPoster.layoutManager = gridLayoutManager
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        scope.cancel()
     }
 
     companion object {
