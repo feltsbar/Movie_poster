@@ -4,13 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class TotalInfoDto(
-    @SerializedName("total")
+    @SerializedName("pagesCount")
     @Expose
-    val totalFilms : String?,
-    @SerializedName("totalPages")
-    @Expose
-    val totalPages : Int?,
-    @SerializedName("items")
+    val pagesCount : Int?,
+    @SerializedName("films")
     @Expose
     val FilmsList : List<FilmInfoDto?>
 )

@@ -25,10 +25,6 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     private val scope = CoroutineScope(Dispatchers.IO)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

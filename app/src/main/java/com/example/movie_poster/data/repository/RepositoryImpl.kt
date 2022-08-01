@@ -1,7 +1,6 @@
 package com.example.movie_poster.data.repository
 
 import android.util.Log
-import androidx.lifecycle.Transformations
 import com.example.movie_poster.data.network.ApiFactory
 import com.example.movie_poster.domain.FilmInfo
 import com.example.movie_poster.domain.GenreInfo
@@ -18,35 +17,39 @@ class RepositoryImpl : Repository {
                     id = it?.id ?: 0,
                     title =  it?.title ?: "",
                     year = it?.year ?: 0,
-                    duration = it?.duration ?: 0,
+                    duration = it?.duration ?: "",
                     genre = it?.genre?.map {
                         GenreInfo(genre = it?.genre ?: "")
                     } ?: emptyList(),
                     image = it?.image ?: "",
-                    ratingKinopoisk = it?.ratingKinopoisk ?: 0.0,
-                    type = it?.type ?: ""
+                    rating = it?.rating ?: 0.0,
                 )
             }
         } catch (e:Exception) {
-            Log.d("MyLogException", "Failed to load Films list")
+            Log.d("MyLogException", "Failed to load <getAllFilms> list")
             emptyList()
         }
     }
 
-    override suspend fun getFilmByTitle(title: String): FilmInfo {
-        TODO("Not yet implemented")
-//        FilmInfo(
-//            id = it.id,
-//            title =  it.title,
-//            year = it.year,
-//            duration = it.duration,
-//            genre = it.genre.map {
-//                GenreInfo(genre = it.genre)
-//            },
-//            image = it.image,
-//            ratingKinopoisk = it.ratingKinopoisk,
-//            type = it.type
-//        )
+    override suspend fun getFilmsByTitle(title: String): List<FilmInfo> {
+        return try {
+            apiService.getFilmsByTitle(title).FilmsList.map {
+                FilmInfo(
+                    id = it?.id ?: 0,
+                    title =  it?.title ?: "",
+                    year = it?.year ?: 0,
+                    duration = it?.duration ?: "",
+                    genre = it?.genre?.map {
+                        GenreInfo(genre = it?.genre ?: "")
+                    } ?: emptyList(),
+                    image = it?.image ?: "",
+                    rating = it?.rating ?: 0.0,
+                )
+            }
+        } catch (e: Exception) {
+            Log.d("MyLogException", "Failed to load <getFilmsByTitle> list")
+            emptyList()
+        }
     }
 
 }

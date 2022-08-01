@@ -3,7 +3,7 @@ package com.example.movie_poster.data.network.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class FilmInfoDto(
+data class SearchFilmInfoDto(
     @SerializedName("filmId")
     @Expose
     val id : Int?,
@@ -13,7 +13,7 @@ data class FilmInfoDto(
     @SerializedName("posterUrlPreview")
     @Expose
     val image : String?,
-    @SerializedName("rating")
+    @SerializedName("ratingKinopoisk")
     @Expose
     val rating : Double?,
     @SerializedName("year")

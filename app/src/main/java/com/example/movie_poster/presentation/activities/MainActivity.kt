@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupBottomNavigationBar()
-
+        openFragment(HomeFragment.newInstance())
     }
 
     private fun setupBottomNavigationBar() {

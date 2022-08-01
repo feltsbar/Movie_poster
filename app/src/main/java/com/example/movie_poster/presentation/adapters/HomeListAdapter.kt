@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.poster_item.view.*
 class HomeListAdapter :
     ListAdapter<FilmInfo, HomeListAdapter.FilmsViewHolder>(FilmListDiffCallback) {
 
-    var onPhotoClickListener: OnPhotoClickListener? = null
+    var onPosterClickListener: OnPosterClickListener? = null
 
     inner class FilmsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterImage: ImageView = itemView.iv_poster_image
@@ -36,12 +36,12 @@ class HomeListAdapter :
             posterTitle.text = filmItem.title
             itemView.setOnClickListener {
                 Log.d("ON_FILM_ITEM_CLICK", "Clicked ${filmItem.title}")
-                onPhotoClickListener?.onPhotoClick(filmItem.image)
+                onPosterClickListener?.onPosterClick(filmItem.image)
             }
         }
     }
 
-    interface OnPhotoClickListener {
-        fun onPhotoClick(imageUrl: String)
+    interface OnPosterClickListener {
+        fun onPosterClick(imageUrl: String)
     }
 }
