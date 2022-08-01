@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_poster.databinding.FragmentSearchBinding
 import com.example.movie_poster.presentation.adapters.SearchListAdapter
 import com.example.movie_poster.presentation.view_model.MainViewModel
@@ -34,6 +33,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().title = "Фильмы / сериалы"
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val adapter = SearchListAdapter()
         binding.rvSearchList.adapter = adapter

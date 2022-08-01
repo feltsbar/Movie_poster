@@ -30,17 +30,14 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     openFragment(HomeFragment.newInstance())
-                    Toast.makeText(this, "navigation_home", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.navigation_search -> {
                     openFragment(SearchFragment.newInstance())
-                    Toast.makeText(this, "navigation_search", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.navigation_profile -> {
                     openFragment(ProfileFragment.newInstance())
-                    Toast.makeText(this, "navigation_profile", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> throw RuntimeException("Unknown menu item!")

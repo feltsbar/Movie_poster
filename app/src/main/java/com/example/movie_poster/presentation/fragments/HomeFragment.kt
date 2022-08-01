@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().title = "Топ фильмов/сериалов"
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val adapter = HomeListAdapter()
         binding.rvPoster.adapter = adapter
