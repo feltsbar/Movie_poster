@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.searching_poster_item.view.*
 class SearchListAdapter :
     ListAdapter<FilmInfo, SearchListAdapter.FilmsViewHolder>(FilmListDiffCallback) {
 
-    var onPosterClickListener: SearchListAdapter.OnPosterClickListener? = null
+    var onPosterClickListener: OnPosterClickListener? = null
 
     inner class FilmsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterImage: ImageView = itemView.iv_search_poster_image
