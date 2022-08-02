@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_poster.R
 import com.example.movie_poster.domain.FilmInfo
 import com.example.movie_poster.presentation.callbacks.FilmListDiffCallback
+import com.example.movie_poster.presentation.fragments.PosterFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.poster_item.view.*
 
@@ -36,12 +38,13 @@ class HomeListAdapter :
             posterTitle.text = filmItem.title
             itemView.setOnClickListener {
                 Log.d("ON_FILM_ITEM_CLICK", "Clicked ${filmItem.title}")
-                onPosterClickListener?.onPosterClick(filmItem.image)
+                onPosterClickListener?.onPosterClick(filmItem)
+
             }
         }
     }
 
     interface OnPosterClickListener {
-        fun onPosterClick(imageUrl: String)
+        fun onPosterClick(posterItem: FilmInfo)
     }
 }
